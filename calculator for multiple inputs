@@ -1,0 +1,67 @@
+calculation:
+
+def getInput():
+    lst=[]
+    n=int(input("enter the total numbers to be calculated"))
+    for i in range(n):
+        ele=int(input("enter the value to be calculated"))
+        lst.append(ele)           
+    return lst,n
+def add():
+    x,n=getInput()
+    res=0
+    for i in x:
+        res=res+i
+    return res
+def sub():
+        x,n=getInput()
+        res=x[0]
+        for i in range(1,n):
+            res=res-x[i]
+        return res
+def mul():
+        x,n=getInput()
+        res=1
+        for i in x:
+            res=res*i
+        return res
+        
+def div():
+        x,n=getInput()
+        res=x[0]
+        i=-1
+        for i in range(1,n):
+            res=res//x[i]
+        return res
+
+
+main module:
+from calculation import *
+symbol=0
+def errorHandler():
+    return "invalid symbol"
+def exit():
+    globals()['symbol']=5
+    return globals()['symbol']
+
+def main():
+    print('''
+             1 for addition
+             2 for subtraction
+             3 for multiplication
+             4 for division
+             5 exit
+               ''')
+    globals()['symbol']=int(input("enter the operation to be done: "))
+    operations={
+        1:add,
+        2:sub,
+        3:mul,
+        4:div,
+        5:exit
+        }
+    output=operations.get(symbol,errorHandler)()
+    print(output)
+while symbol!=5:
+    main()
+print("thankyou")
